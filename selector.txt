@@ -1,0 +1,62 @@
+-> Fitur Auto Claim
+
+- Click Visit
+????
+
+- Button Claim Now First
+#section-home > div > div > div.block-claim.flex.flex-row.relative.z-0 > div.item-1 > div._item-1_2 > div.ml-auto.mt-3 > button
+
+- Check Balance
+#section-transaction > div.block-data.h-full > div > div.flex.item-bl-1.flex-row.items-center > div.left.relative > p
+
+- Check Boat
+#section-transaction > div.direction-tab.flex.flex-col.items-center.gap-6.pt-4 > div.menu-block > div > div.menu_1.relative > div.menu_title.flex.flex-row.justify-between.items-center.absolute > div > span.time
+
+- Check Aqua Cat
+#section-transaction > div.direction-tab.flex.flex-col.items-center.gap-6.pt-4 > div.menu-block > div > div.menu_2.relative > div.menu_title.flex.flex-row.justify-between.items-center.absolute > div > span.time
+
+
+Jika Run Setiap Jam
+- Check Storage
+#section-transaction > div.block-data.h-full > div > div.overlay.relative > div > div > div > div:nth-child(1) > div.text-white.boat_balance.flex-1
+
+- Button Claim
+#section-transaction > div.block-data.h-full > div > div.overlay.relative > div > div > div > div.flex.flex-row.items-center.item-2.mt-2.mb-3 > div > div
+
+- Check Apakah Sudah Berhasil Claim (Jika Element Found Maka Berhasil)
+#section-transaction > div.block-data.h-full > div > div.overlay.relative > div > div > div > div.ml-2.flex.flex-row.items-center.item.mt-2.mb-3 > span
+
+
+Jika Belum Berhasil Tweak
+
+Jika Sudah Berhasil Schedule Run Lagi
+
+
+###################################################################################
+
+-> Fitur Upgrade Aqua Cat 
+
+- Click Level Up
+#section-transaction > div.direction-tab.flex.flex-col.items-center.gap-6.pt-4 > div.menu-block > div > div.menu_2.relative > div.block-btn.absolute > button
+
+- Check Price Upgrade
+body > div:nth-child(3) > div.bottom-sheet > div > main > div > div > div > div.flex.flex-row.w-full.justify-between.gap-5.mt-4 > div > button > span
+
+- If Storage > (Balance x2) Click Upgrade
+body > div:nth-child(3) > div.bottom-sheet > div > main > div > div > div > div.flex.flex-row.w-full.justify-between.gap-5.mt-4 > div > button
+
+- Check Apakah Sudah Berhasil Claim (Jika Element Found Maka Berhasil)
+???
+
+
+-> Fitur Upgrade Storage
+
+- Click Level Up
+#section-transaction > div.direction-tab.flex.flex-col.items-center.gap-6.pt-4 > div.menu-block > div > div.menu_1.relative > div.block-btn.absolute > button
+
+- Check Price Upgrade (Sama Kaya Upgrade Speed)
+
+- If Storage > (Balance x2) Click Upgrade (Sama Kaya Upgrade Speed)
+
+- Check Apakah Sudah Berhasil Claim (Jika Element Found Maka Berhasil)
+???
