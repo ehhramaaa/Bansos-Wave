@@ -92,6 +92,7 @@ async function checkCommand(element, profile, message) {
     await killApps()
 
     const ovpnConfig = await ovpnReadConfig(folderPath)
+    const phrase = fs.readFileSync('phrase.txt', 'utf-8').split('\n');
 
     mainLoop: for (let x = 0; x <= 21; x++) {
 
