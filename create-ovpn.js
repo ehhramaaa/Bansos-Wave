@@ -299,7 +299,7 @@ async function checkCommand(element, profile, message) {
                 await iframe.waitForSelector('#section-register > div > div.body_address.body_seedphrase.flex.flex-col > div.relative > div.seed_block.border-common.border-light.border-light-radius-8.rounded > div');
                 phrase = await iframe.evaluate(() => {
                     const element = document.querySelector('#section-register > div > div.body_address.body_seedphrase.flex.flex-col > div.relative > div.seed_block.border-common.border-light.border-light-radius-8.rounded > div');
-                    return parseFloat(element.textContent)
+                    return element.textContent
                 });
             }
 
