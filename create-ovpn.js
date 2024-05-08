@@ -93,7 +93,7 @@ async function checkCommand(element, profile, message) {
 
     const ovpnConfig = await ovpnReadConfig(folderPath)
 
-    mainLoop: for (let x = 0; x <= 21 && x != 1; x++) {
+    mainLoop: for (let x = 2; x <= 21; x++) {
 
         const ip = await checkIp()
         prettyConsole(chalk.magenta(`Current IP : ${ip}`))
