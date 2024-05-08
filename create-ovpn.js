@@ -291,9 +291,9 @@ async function checkCommand(element, profile, message) {
 
             // Save Phrase
             const savePhrase = async (x) => {
-                await iframe.waitForSelector('#section-transaction > div.direction-tab.flex.flex-col.items-center.gap-6.pt-4 > div.menu-block > div > div.menu_2.relative > div.menu_title.flex.flex-row.justify-between.items-center.absolute > div > span.time');
+                await iframe.waitForSelector('#section-register > div > div.body_address.body_seedphrase.flex.flex-col > div.relative > div.seed_block.border-common.border-light.border-light-radius-8.rounded > div');
                 phrase = await iframe.evaluate(() => {
-                    const element = document.querySelector('#section-transaction > div.direction-tab.flex.flex-col.items-center.gap-6.pt-4 > div.menu-block > div > div.menu_2.relative > div.menu_title.flex.flex-row.justify-between.items-center.absolute > div > span.time');
+                    const element = document.querySelector('#section-register > div > div.body_address.body_seedphrase.flex.flex-col > div.relative > div.seed_block.border-common.border-light.border-light-radius-8.rounded > div');
                     return parseFloat(element.textContent)
                 });
             }
