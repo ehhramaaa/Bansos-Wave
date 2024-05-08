@@ -84,8 +84,8 @@ async function checkCommand(element, profile, message) {
 (async () => {
     console.log(chalk.cyan(`\n<==================================[${moment().format('HH:mm:ss DD-MM-YYYY')}]==================================>`))
 
-    if (!fs.existsSync(`account/${moment().format('DD_MM_YYYY')}.txt`)) {
-        fs.writeFileSync(`account/${moment().format('DD_MM_YYYY')}.txt`, '');
+    if (!fs.existsSync(`createLog.txt`)) {
+        fs.writeFileSync(`createLog.txt`, '');
     }
 
     const ovpnConfig = await ovpnReadConfig(folderPath)
@@ -267,7 +267,7 @@ async function checkCommand(element, profile, message) {
                 continue mainLoop
             }
 
-            fs.appendFileSync(`account/${moment().format('DD_MM_YYYY')}.txt`, `Profile:${x}` + '\n' + `Address:${address}` + '\n');
+            fs.appendFileSync(`createLog.txt`, `Profile:${x}` + '\n' + `Address:${address}` + '\n');
 
             prettyConsole(chalk.green(`Address\t:${address}`))
 
@@ -306,7 +306,7 @@ async function checkCommand(element, profile, message) {
                 continue mainLoop
             }
 
-            fs.appendFileSync(`account/${moment().format('DD_MM_YYYY')}.txt`, `Phrase:${phrase}` + '\n');
+            fs.appendFileSync(`createLog.txt`, `Phrase:${phrase}` + '\n');
 
             prettyConsole(chalk.green(`Phrase\t:${phrase}`))
 
