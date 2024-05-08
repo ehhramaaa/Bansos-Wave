@@ -251,6 +251,8 @@ async function checkCommand(element, profile, message) {
                 continue mainLoop
             }
 
+            await sleep(3000)
+
             let address
 
             // Save Address
@@ -332,6 +334,8 @@ async function checkCommand(element, profile, message) {
                 await rest()
                 continue mainLoop
             }
+
+            await sleep(3000)
 
             // Check Create
             const checkCreate = async () => {
