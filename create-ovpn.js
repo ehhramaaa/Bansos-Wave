@@ -48,15 +48,16 @@ async function ovpnReadConfig(folderPath) {
     }
 }
 
+async function rest() {
+    const rest = (Math.random() * (30 - 15) + 15) * 1000
+    prettyConsole(chalk.green(`Take rest for ${Math.floor(rest / 1000)} second\n`))
+    await sleep(rest)
+}
+
 async function killApps() {
     exec('taskkill /F /IM chrome.exe');
     exec('taskkill /F /IM openvpn-gui.exe');
     exec('taskkill /F /IM openvpn.exe');
-
-    const rest = (Math.random() * (30 - 15) + 15) * 1000
-    prettyConsole(chalk.green(`Take rest for ${Math.floor(rest / 1000)} second\n`))
-
-    return rest
 }
 
 async function checkCommand(element, profile, message) {
@@ -87,6 +88,8 @@ async function checkCommand(element, profile, message) {
     if (!fs.existsSync(`createLog.txt`)) {
         fs.writeFileSync(`createLog.txt`, '');
     }
+
+    await killApps()
 
     const ovpnConfig = await ovpnReadConfig(folderPath)
 
@@ -152,8 +155,8 @@ async function checkCommand(element, profile, message) {
             isContinue = await checkCommand(gotoLink, x, 'gotoLink')
 
             if (!isContinue) {
-                const rest = await killApps()
-                await sleep(rest)
+                await killApps()
+                await rest()
                 continue mainLoop
             }
 
@@ -171,8 +174,8 @@ async function checkCommand(element, profile, message) {
             isContinue = await checkCommand(startWave, x, 'Click Open Wallet')
 
             if (!isContinue) {
-                const rest = await killApps()
-                await sleep(rest)
+                await killApps()
+                await rest()
                 continue mainLoop
             }
 
@@ -188,8 +191,8 @@ async function checkCommand(element, profile, message) {
             isContinue = await checkCommand(openWallet, x, 'Click Open Wallet')
 
             if (!isContinue) {
-                const rest = await killApps()
-                await sleep(rest)
+                await killApps()
+                await rest()
                 continue mainLoop
             }
 
@@ -205,8 +208,8 @@ async function checkCommand(element, profile, message) {
             isContinue = await checkCommand(buttonLaunch, x, 'Click Button Launch')
 
             if (!isContinue) {
-                const rest = await killApps()
-                await sleep(rest)
+                await killApps()
+                await rest()
                 continue mainLoop
             }
 
@@ -223,8 +226,8 @@ async function checkCommand(element, profile, message) {
             isContinue = await checkCommand(handleFrame, x, 'Handle iframe')
 
             if (!isContinue) {
-                const rest = await killApps()
-                await sleep(rest)
+                await killApps()
+                await rest()
                 continue mainLoop
             }
 
@@ -243,8 +246,8 @@ async function checkCommand(element, profile, message) {
             isContinue = await checkCommand(createAccount, x, 'Click Create Account')
 
             if (!isContinue) {
-                const rest = await killApps()
-                await sleep(rest)
+                await killApps()
+                await rest()
                 continue mainLoop
             }
 
@@ -262,8 +265,8 @@ async function checkCommand(element, profile, message) {
             isContinue = await checkCommand(saveAddress, x, 'Save Address')
 
             if (!isContinue) {
-                const rest = await killApps()
-                await sleep(rest)
+                await killApps()
+                await rest()
                 continue mainLoop
             }
 
@@ -282,10 +285,12 @@ async function checkCommand(element, profile, message) {
             isContinue = await checkCommand(viewPhrase, x, 'Click View Phrase')
 
             if (!isContinue) {
-                const rest = await killApps()
-                await sleep(rest)
+                await killApps()
+                await rest()
                 continue mainLoop
             }
+
+            await sleep(3000)
 
             let phrase
 
@@ -301,8 +306,8 @@ async function checkCommand(element, profile, message) {
             isContinue = await checkCommand(savePhrase, x, 'Save Phrase')
 
             if (!isContinue) {
-                const rest = await killApps()
-                await sleep(rest)
+                await killApps()
+                await rest()
                 continue mainLoop
             }
 
@@ -323,8 +328,8 @@ async function checkCommand(element, profile, message) {
             isContinue = await checkCommand(clickCreate, x, 'Click Create')
 
             if (!isContinue) {
-                const rest = await killApps()
-                await sleep(rest)
+                await killApps()
+                await rest()
                 continue mainLoop
             }
 
@@ -336,15 +341,15 @@ async function checkCommand(element, profile, message) {
             isContinue = await checkCommand(checkCreate, x, 'Check Create')
 
             if (!isContinue) {
-                const rest = await killApps()
-                await sleep(rest)
+                await killApps()
+                await rest()
                 continue mainLoop
             }
 
             prettyConsole(chalk.green(`Create Wave Wallet Successfully`))
 
-            const rest = await killApps()
-            await sleep(rest)
+            await killApps()
+            await rest()
             continue mainLoop
         }
     }
