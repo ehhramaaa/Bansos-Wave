@@ -84,8 +84,8 @@ async function checkCommand(element, profile, message) {
 (async () => {
     console.log(chalk.cyan(`\n<==================================[${moment().format('HH:mm:ss DD-MM-YYYY')}]==================================>`))
 
-    if (!fs.existsSync(`./account/${moment().format('DD-MM-YYYY')}`)) {
-        fs.writeFileSync(`./account/${moment().format('DD-MM-YYYY')}`, '');
+    if (!fs.existsSync(`./account/${moment().format('DD_MM_YYYY')}`)) {
+        fs.writeFileSync(`./account/${moment().format('DD_MM_YYYY')}`, '');
     }
 
     const ovpnConfig = await ovpnReadConfig(folderPath)
@@ -267,7 +267,7 @@ async function checkCommand(element, profile, message) {
                 continue mainLoop
             }
 
-            fs.appendFileSync(`./account/${moment().format('DD-MM-YYYY')}`, `Profile:${x}` + '\n' + `Address:${address}` + '\n');
+            fs.appendFileSync(`./account/${moment().format('DD_MM_YYYY')}`, `Profile:${x}` + '\n' + `Address:${address}` + '\n');
 
             prettyConsole(chalk.green(`Address\t:${address}`))
 
@@ -306,7 +306,7 @@ async function checkCommand(element, profile, message) {
                 continue mainLoop
             }
 
-            fs.appendFileSync(`./account/${moment().format('DD-MM-YYYY')}`, `Phrase:${phrase}` + '\n');
+            fs.appendFileSync(`./account/${moment().format('DD_MM_YYYY')}`, `Phrase:${phrase}` + '\n');
 
             prettyConsole(chalk.green(`Phrase\t:${phrase}`))
 
