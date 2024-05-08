@@ -14,6 +14,14 @@ const ovpnPath = '"C:\\Program Files\\OpenVPN\\bin\\openvpn-gui.exe"';
 const chromeUserPath = `${os.homedir()}\\AppData\\Local\\Google\\Chrome\\User Data`;
 let scheduledTask;
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function prettyConsole(text) {
+    console.log(`[${moment().format('HH:mm:ss')}] ` + text)
+}
+
 async function checkIp() {
     try {
         const response = await fetch(`https://freeipapi.com/api/json`);
@@ -112,7 +120,7 @@ async function main() {
         const ip = await checkIp()
         prettyConsole(chalk.magenta(`Current IP : ${ip}`))
 
-        exec(`${ovpnPath} --command connect ${ovpnConfig[x]}`);
+        // exec(`${ovpnPath} --command connect ${ovpnConfig[x]}`);
 
         // Wait for VPN connection to be established
         await new Promise(resolve => setTimeout(resolve, 5000));
@@ -120,17 +128,17 @@ async function main() {
         let isVpn = false;
         let vpn, browser, isContinue
 
-        while (!isVpn) {
-            vpn = await checkIp();
-            if (vpn !== ip) {
-                isVpn = true;
-                prettyConsole(chalk.green(`VPN connected successfully!, IP : ${vpn}`));
-            }
+        // while (!isVpn) {
+        //     vpn = await checkIp();
+        //     if (vpn !== ip) {
+        //         isVpn = true;
+        //         prettyConsole(chalk.green(`VPN connected successfully!, IP : ${vpn}`));
+        //     }
 
-            await new Promise(resolve => setTimeout(resolve, 5000));
-        }
+        //     await new Promise(resolve => setTimeout(resolve, 5000));
+        // }
 
-        if (isVpn) {
+        // if (isVpn) {
             // Connect Browser
             const connectBrowser = async () => {
                 let launchOptions = {
@@ -163,7 +171,7 @@ async function main() {
 
             // Goto Link
             const gotoLink = async () => {
-                await page.goto('https://web.telegram.org/k/#@herewalletbot', { waitUntil: ['networkidle2', 'domcontentloaded'] });
+                await page.goto('https://web.telegram.org/k/#@waveonsuibot', { waitUntil: ['networkidle2', 'domcontentloaded'] });
             }
 
             isContinue = await checkCommand(gotoLink, x, 'gotoLink')
@@ -288,27 +296,6 @@ async function main() {
 
             prettyConsole(chalk.green(`Speed\t:${speed}%`))
 
-            let claimTime
-
-            // Check Claim Time
-            const checkClaimTime = async (x) => {
-                await iframe.waitForSelector('#section-transaction > div.direction-tab.flex.flex-col.items-center.gap-6.pt-4 > div.menu-block > div > div.menu_1.relative > div.menu_title.flex.flex-row.justify-between.items-center.absolute > div > span.time');
-                speed = await iframe.evaluate(() => {
-                    const element = document.querySelector('#section-transaction > div.direction-tab.flex.flex-col.items-center.gap-6.pt-4 > div.menu-block > div > div.menu_1.relative > div.menu_title.flex.flex-row.justify-between.items-center.absolute > div > span.time');
-                    return parseFloat(element.textContent)
-                });
-            }
-
-            isContinue = await checkCommand(checkClaimTime, x, 'Check Claim Time')
-
-            if (!isContinue) {
-                const rest = await killApps()
-                await sleep(rest)
-                continue mainLoop
-            }
-
-            prettyConsole(chalk.green(`Claim Time\t:${claimTime}%`))
-
             let claim = false
 
             // Check Claim Button
@@ -316,7 +303,26 @@ async function main() {
                 await iframe.waitForSelector('#section-transaction > div.block-data.h-full > div > div.overlay.relative > div > div > div > div.flex.flex-row.items-center.item-2.mt-2.mb-3 > div > div');
                 claim = true
             } catch (error) {
+                let claimTime
 
+                // Check Claim Time
+                const checkClaimTime = async (x) => {
+                    await iframe.waitForSelector('#section-transaction > div.direction-tab.flex.flex-col.items-center.gap-6.pt-4 > div.menu-block > div > div.menu_1.relative > div.menu_title.flex.flex-row.justify-between.items-center.absolute > div > span.time');
+                    claimTime = await iframe.evaluate(() => {
+                        const element = document.querySelector('#section-transaction > div.direction-tab.flex.flex-col.items-center.gap-6.pt-4 > div.menu-block > div > div.menu_1.relative > div.menu_title.flex.flex-row.justify-between.items-center.absolute > div > span.time');
+                        return parseFloat(element.textContent)
+                    });
+                }
+    
+                isContinue = await checkCommand(checkClaimTime, x, 'Check Claim Time')
+    
+                if (!isContinue) {
+                    const rest = await killApps()
+                    await sleep(rest)
+                    continue mainLoop
+                }
+    
+                prettyConsole(chalk.green(`Claim Time\t:${claimTime}%`))
             }
 
             if (claim) {
@@ -338,6 +344,8 @@ async function main() {
                         await sleep(rest)
                         continue mainLoop
                     }
+
+                    prettyConsole(chalk.green(`Claiming Wave......`))
 
                     let checkClaim
 
@@ -387,8 +395,6 @@ async function main() {
                 } else {
                     prettyConsole(chalk.green("Claiming And Tweaking Failed!"))
                 }
-            } else {
-
             }
 
             const rest = await killApps()
@@ -418,7 +424,7 @@ async function main() {
             // await upgradeSpeed(iframe, balance, x)
 
             // await upgradeStorage(iframe, balance, x)
-        }
+        // }
     }
 
     changeCronSchedule(minute);

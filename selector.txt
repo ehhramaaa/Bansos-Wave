@@ -60,3 +60,40 @@ body > div:nth-child(3) > div.bottom-sheet > div > main > div > div > div > div.
 
 - Check Apakah Sudah Berhasil Claim (Jika Element Found Maka Berhasil)
 ???
+
+
+
+#####################################
+
+-> Create Account
+#section-create-account\ relative > div > div.body_button.absolute.bottom-12 > button.text-white.btn-create.btn-common
+
+-> Save Address
+#section-register > div > div:nth-child(1) > div > div > div
+
+-> Click View
+#section-register > div > div.body_address.body_seedphrase.flex.flex-col > div.relative > div.flex.justify-center.mt-2.gap-4 > button:nth-child(1)
+
+-> Save Phrase
+#section-register > div > div.body_address.body_seedphrase.flex.flex-col > div.relative > div.seed_block.border-common.border-light.border-light-radius-8.rounded > div
+
+-> Click Create
+#section-register > div > div.body_button.absolute.bottom-12 > button
+
+-> Jika Element Found Maka Sudah Berhasil
+#section-home > div > div > div.block-claim.flex.flex-row.relative.z-0 > div.item-1 > div._item-1_2 > div.ml-auto.mt-3 > button
+
+
+########################################
+
+-> Login Account
+button.text-white.btn-login
+
+-> Typing Phrase
+#section-login > div > div:nth-child(4) > label > textarea
+
+-> Click continue
+#section-login > div > div.w-full.mt-auto > button
+
+-> If Element Found Successfully Login
+#section-home > div > div > div.block-claim.flex.flex-row.relative.z-0 > div.item-1 > div._item-1_2 > div.ml-auto.mt-3 > button
